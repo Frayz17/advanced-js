@@ -1,21 +1,10 @@
 import React from 'react';
-import Block from 'components/Block';
+import DynamicSearch from './modules/DynamicSearch';
 
 class App extends React.Component {
 	render = () => {
 		return <>
-			<Block 
-				id="header__wrapper"
-				className="test"
-				style={{
-					textAlign: 'center',
-					color: 'red',	
-				}}
-				getCurrentState={(value) => {
-					console.log('App', value)
-				}}>
-				<h1>Header</h1>
-			</Block>
+			<DynamicSearch />
 		</>;
 	};
 };
