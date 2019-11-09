@@ -40,13 +40,11 @@ class DynamicSearch extends React.Component {
 		});
 	};
 
-	handleClearInput = () => {
-		this.setState({
-			findedIndexes: []
-		}, () => {
-			this.nodeRef.value = '';
-		});
-	};
+	handleClearInput = () => this.setState({
+		findedIndexes: []
+	}, () => {
+		this.nodeRef.value = '';
+	});
 
 	render = () => {
 		const { 
