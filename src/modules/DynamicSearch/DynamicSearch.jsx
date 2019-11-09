@@ -16,33 +16,57 @@ class DynamicSearch extends React.Component {
 		findedIndexes: [],
 	};
 
+	nodeRef = null;
+
+	handleChange = () => {
+		const { data = [] } = this.state;
+		let newValue = '';
+		
+		if (this.nodeRef.value) {
+			newValue = this.nodeRef.value.trim().toLowerCase();
+		}
+
+		this.setState({
+			findedIndexes: newValue.length > 0 ?
+				data.filter((item) => {
+					item = item.trim().toLowerCase();
+
+					if (item.indexOf(newValue) === 0) {
+						return true;
+					}
+					return false;
+				}) :
+				[]
+		});
+	};
+
+	handleClearInput = () => {
+		this.setState({
+			findedIndexes: []
+		}, () => {
+			this.nodeRef.value = '';
+		});
+	};
+
 	render = () => {
-		const { data = [], findedIndexes = [] } = this.state;
+		const { 
+			// data = [], 
+			findedIndexes = [],
+		} = this.state;
 
 		return <>
 			<Input 
-				onChange={(e) => {
-					this.setState({
-						findedIndexes: data.filter((item) => {
-							item = item.toLowerCase();
-
-							if (item.indexOf(e.target.value.toLowerCase()) === 0) {
-								return true;
-							}
-							return false;
-						})
-					});
-				}} />
-			<Button>
+				ref={(node) => node && (this.nodeRef = node)}
+				onChange={this.handleChange} />
+			<Button
+				onClick={this.handleClearInput}>
 				x
 			</Button>
 			<Button>
 				Find
 			</Button>
 			<Block>
-			{(findedIndexes.length > 0 ?
-				findedIndexes :
-				data).map((item, i) => {
+			{findedIndexes.map((item, i) => {
 				return <Block key={i}>{item}</Block>;
 			})}
 			</Block>
