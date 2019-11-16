@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getStore } from 'Services/Store';
 import styled from 'styled-components';
 import Block from 'components/Block';
 import Button from 'components/Button';
-import defineContentProps from './defineContentProps.js';
 
 const RootWrapper = styled(Block)`
 	overflow: hidden;
@@ -22,60 +23,44 @@ const ContentWrapper = styled(Block)`
 `;
 
 class Slider extends React.Component {
-	constructor (props) {
-		super(props);
-
-		this.defineContentProps = defineContentProps.bind(this);
-	};
-
 	static defaultProps = {
-		defaultSlide: 0
-	};	
-
-	state = {
-		scrollX: 0,
-		currentSlide: this.props.defaultSlide,
+		defaultSlide: 0,
+		name: ''
 	};
 
-	slideTo = (slideIndex = 0) => (e) => {
-		const { currentSlide = 0 } = this.state;
-
-		if (slideIndex === currentSlide) {
-			return;
-		}
-
-		const { 
-			slideWidth,
-			slidesCount 
-		} = this.defineContentProps();
-		const nextIndex = currentSlide < slideIndex ?
-			currentSlide + 1 :
-			currentSlide - 1;
-
-		if (nextIndex >= 0 && nextIndex <= slidesCount - 1) {
-			this.setState({
-				scrollX: slideWidth * nextIndex,
-				currentSlide: nextIndex,
-			});
-		}
+	slideTo = (slideIndex = this.props.defaultSlide) => (e) => {
+		getStore().dispatch({
+			type: 'SLIDE_X',
+			payload: {
+				sliderName: this.props.name, 
+				slideIndex,
+			}
+		});
 	};
 
 	render = () => {
-		const { children = [] } = this.props;
-		const { 
-			scrollX = 0,
-			currentSlide = 0 
-		} = this.state;
+		const { slides = [], currentSlide = 0, scrollX = 0 } = this.props;
+		const slidesCount = slides.length || 1;
+		const slideWidth = +(100 / slidesCount).toFixed(2);
 
+		console.log('slides', slides)
 		return <>
 			<RootWrapper>
 				<ContentWrapper 
-					{ ...this.defineContentProps() }
+					slideWidth={slideWidth}
+					slidesCount={slidesCount}
 					style={{
 						transform: `translate(-${scrollX}%,0px)`,
 						transition: 'ease .2s all'
 					}}>
-				{children}
+				{slides.map(({ 
+					style = {}, 
+					title = 'No name' 
+				}, i) => {
+					return <Block key={i} style={style}>
+						{title}
+					</Block>
+				})}
 				</ContentWrapper>
 			</RootWrapper>
 			<Button onClick={this.slideTo(currentSlide - 1)}>
@@ -87,4 +72,8 @@ class Slider extends React.Component {
 		</>;
 	};
 };
-export default Slider;
+export default connect((state, { name = '' }) => {
+	return {
+		...state.sliders[name],
+	};
+})(Slider);

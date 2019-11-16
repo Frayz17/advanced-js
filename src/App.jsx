@@ -1,25 +1,19 @@
 import React from 'react';
-import Slider from './modules/Slider';
+import { connect } from 'react-redux';
 import Block from './components/Block';
+import Slider from 'modules/Slider';
+// import { getState } from 'Services/Store';
 
 class App extends React.Component {
 	render = () => {
 		return <>
-			<Slider>
-				<Block style={{ backgroundColor: 'red' }}>
-					First slide
-				</Block>
-				<Block style={{ backgroundColor: 'blue' }}>
-					Second slide
-				</Block>
-				<Block style={{ backgroundColor: 'grey' }}>
-					Third slide
-				</Block>
-				<Block style={{ backgroundColor: 'yellow' }}>
-					Forth slide
-				</Block>
-			</Slider>
+			<Block>{this.props.name}</Block>
+			<Slider name="main" />
 		</>;
 	};
 };
-export default App;
+export default connect((state, props) => {
+	return {
+		name: state.users.name,
+	};
+})(App);
