@@ -5,11 +5,13 @@ import App from './App.jsx';
 import { 
 	newStore,
 	posts,
+	nav,
 	StoreProvider,
 } from 'Services/Store';
 
 newStore({
 	posts,
+	nav,
 });
 
 ReactDOM.render(<StoreProvider>

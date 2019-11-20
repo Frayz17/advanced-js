@@ -1,13 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Menu from 'modules/Menu';
 import Home from 'routes/Home';
 import Posts from 'routes/Posts';
 import SignIn from 'routes/SignIn';
 
-export default React.memo(() => (
-	<>
+export default React.memo(() => {
+	return <>
 		<Menu />
 		<Switch>
 			<Route path="/posts">
@@ -21,4 +20,4 @@ export default React.memo(() => (
 			</Route>
 		</Switch>
 	</>
-));
+});

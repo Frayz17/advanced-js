@@ -4,6 +4,7 @@ import {
 	getState,
 } from './Store.js';
 import posts from './posts.js';
+import nav from './nav.js';
 import StoreProvider from './StoreProvider.jsx';
 
 export {
@@ -11,5 +12,6 @@ export {
 	getStore,
 	getState,
 	posts,
+	nav,
 	StoreProvider,
 };

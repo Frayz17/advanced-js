@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getState } from 'Services/Store'
 import { BlockFlex } from 'components/Block';
 import { ButtonLink } from 'components/Button';
+import Typography from 'components/Typography';
 
 const StyledBlockFlex = styled(BlockFlex)`
 	align-items: center;
@@ -12,42 +16,60 @@ const StyledBlockFlex = styled(BlockFlex)`
 	}
 `;
 
-export default connect((state) => {
+export default withRouter(connect((state) => {
 	return {
-		link: (state.nav || {}).link || '/',
-	}
+		// link: (state.nav || {}).link || '/',
+	};
 })(React.memo(({
-	link,
+	history,
 }) => {
-	const mainCheck = link === '/';
+	const { nav: { links = [] } } = getState();
+	const [ testFlag, setTestFlag ] = React.useState(false);
 
-	const a = await import('http://google.com/test.json');
+	// onMount
+	React.useEffect(() => {
+		console.log('onMount')
+	}, []);
+
+	// onUnmount
+	React.useEffect(() => () => {
+		console.log('onMount')
+	}, []);
+
+	// onTestFlagUpdated
+	React.useEffect(() => {
+		console.log('onTestFlagUpdated', testFlag)
+	}, [ testFlag ]);
+
+	// onLinkUpdated
+	React.useEffect(() => {
+		console.log('onLinkUpdated', history.location.pathname)
+	}, [ history.location.pathname ]);
+
+	setTimeout(() => {
+		setTestFlag(true);
+	}, 5000);
 
 	return <StyledBlockFlex>
-		<ButtonLink 
-			to="/"
-			disabled={mainCheck}
-			style={mainCheck ? {
-				color: 'red',
-			} : {
-				color: 'green'
-			}}>
-			<Typography>
-				Main
-			</Typography>
-		</ButtonLink>
+		{links.map(({ 
+			path = '/',
+			title = 'No name', 
+		}, i) => {
+			const isActiveFlag = history.location.pathname === path;
 
-		<ButtonLink 
-			to="/"
-			disabled={mainCheck}
-			style={mainCheck ? {
-				color: 'red',
-			} : {
-				color: 'green'
-			}}>
-			<Typography>
-				Main
-			</Typography>
-		</ButtonLink>
+			return <ButtonLink 
+				key={i}
+				to={path}
+				disabled={isActiveFlag}
+				style={isActiveFlag ? {
+					color: 'blue',
+				} : {
+					color: 'green'
+				}}>
+				<Typography>
+					{title}
+				</Typography>
+			</ButtonLink>
+		})}
 	</StyledBlockFlex>
-}));
+})));
