@@ -6,16 +6,21 @@ import {
 	newStore,
 	posts,
 	nav,
+	menu,
 	StoreProvider,
 } from 'Services/Store';
+import GlobalStyles from './globalStyles.js';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 newStore({
 	posts,
 	nav,
+	menu,
 });
 
 ReactDOM.render(<StoreProvider>
 	<BrowserRouter>
 		<App />
+		<GlobalStyles />
 	</BrowserRouter>
 </StoreProvider>, document.getElementById('root'));

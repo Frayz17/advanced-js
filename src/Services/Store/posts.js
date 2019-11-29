@@ -1,4 +1,16 @@
 
 export default (state = [], action) => {
-	return [ ...state ];
+	switch (action.type) {
+		case 'SET_POSTS':
+			return [ ...action.payload ];
+
+		case 'MERGE_POSTS':
+			return [
+				...state,
+				...action.payload,
+			];
+
+		default:
+			return [ ...state ];
+	}
 };
