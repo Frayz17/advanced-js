@@ -1,3 +1,2 @@
-import Icon from './Icon.jsx';
-
+import Icon from './Icon';
 export default Icon;

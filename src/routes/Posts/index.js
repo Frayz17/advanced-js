@@ -1,3 +1,3 @@
-import Posts from './Posts.jsx';
+import Posts from './Posts';
 
 export default Posts;

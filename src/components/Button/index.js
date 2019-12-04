@@ -1,7 +1,5 @@
-import Button from './Button.jsx';
-import ButtonLink from './ButtonLink.jsx';
+import Button from './Button';
+import ButtonLink from './ButtonLink';
 
+export { ButtonLink };
 export default Button;
-export {
-	ButtonLink,
-};
