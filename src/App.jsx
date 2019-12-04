@@ -7,7 +7,7 @@ import SignIn from 'routes/SignIn';
 
 export default React.memo(() => {
 	return <>
-		<Menu />
+		{/*<Menu />*/}
 		<Switch>
 			<Route path="/posts">
 				<Posts />
