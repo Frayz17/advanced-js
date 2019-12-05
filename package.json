@@ -1,8 +1,8 @@
 {
-  "name": "frayz",
+  "name": "beetroot",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "beetroot description",
+  "main": "index.jsx",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
