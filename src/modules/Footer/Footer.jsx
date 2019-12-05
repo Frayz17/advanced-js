@@ -1,55 +1,29 @@
 import React from 'react';
-import Typography from 'components/Typography';
-import ModalBox from 'components/ModalBox';
-import MapModule from 'modules/MapModule';
+import Copyright from './Copyright';
+import Address from './Address';
+import Contacts from './Contacts';
 import Menu from 'modules/Menu';
+import Block from 'components/Block';
 import {
-  AddressBlock,
-  AddressTypography,
-  ContactsButton,
-  ContactsTypography,
-  CopyrightBlock,
-  CopyrightTypography,
-  Footer,
+  addressContactsWrapper,
+  footer,
   InformationBlock,
-  MapClosedButton,
-  MenuBlock
+  MenuWrapper
 } from './styles';
 
 export default React.memo(() => {
-  const [isMapOpenFlag, setIsMapOpenFlag] = React.useState(false);
-
-  const onMapCall = () => {
-    setIsMapOpenFlag(!isMapOpenFlag);
-  };
-
-  const copyrightStr = `&copy; ${new Date().getFullYear()}`;
-
   return (
-    <Footer>
+    <Block style={footer}>
       <InformationBlock>
-        <CopyrightBlock>
-          <Typography>
-            {copyrightStr}
-            <br />
-            <CopyrightTypography>BetobeCorp</CopyrightTypography>
-          </Typography>
-        </CopyrightBlock>
+        <Copyright />
 
-        <AddressBlock>
-          <AddressTypography>
-            BetobeCorp <br /> Miami <br />
-            SW 26th St
-          </AddressTypography>
-          <ContactsTypography>
-            Waiting for Call <br />
-            +(0)123-456-7890 <br />
-            <ContactsButton onClick={onMapCall}>We on a Map</ContactsButton>
-          </ContactsTypography>
-        </AddressBlock>
+        <Block style={addressContactsWrapper}>
+          <Address />
+          <Contacts />
+        </Block>
       </InformationBlock>
 
-      <MenuBlock>
+      <MenuWrapper>
         <Menu
           styleMenuBlock={{
             position: 'relative'
@@ -63,14 +37,7 @@ export default React.memo(() => {
           }}
           isBurgerNeed={false}
         />
-      </MenuBlock>
-
-      {isMapOpenFlag && (
-        <ModalBox>
-          <MapModule />
-          <MapClosedButton onClick={onMapCall}>close</MapClosedButton>
-        </ModalBox>
-      )}
-    </Footer>
+      </MenuWrapper>
+    </Block>
   );
 });

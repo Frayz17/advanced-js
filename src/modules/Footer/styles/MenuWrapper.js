@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Block from 'components/Block';
 
-const MenuBlock = styled(Block)`
+const MenuWrapper = styled(Block)`
   margin-bottom: 10px;
 
   @media screen and (min-width: 576px) {
@@ -9,4 +9,4 @@ const MenuBlock = styled(Block)`
   }
 `;
 
-export default MenuBlock;
+export default MenuWrapper;

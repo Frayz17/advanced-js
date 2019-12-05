@@ -1,23 +1,15 @@
-import AddressBlock from './AddressBlock';
-import AddressTypography from './AddressTypography';
-import ContactsButton from './ContactsButton';
-import ContactsTypography from './ContactsTypography';
-import CopyrightBlock from './CopyrightBlock';
-import CopyrightTypography from './CopyrightTypography';
-import Footer from './Footer';
+import addressContactsWrapper from './addressContactsWrapper';
+import footer from './footer';
 import InformationBlock from './InformationBlock';
 import MapClosedButton from './MapClosedButton';
-import MenuBlock from './MenuBlock';
+import MenuWrapper from './MenuWrapper';
+import contactsButton from './contactsButton';
 
 export {
-  AddressBlock,
-  AddressTypography,
-  ContactsButton,
-  ContactsTypography,
-  CopyrightBlock,
-  CopyrightTypography,
-  Footer,
+  addressContactsWrapper,
+  contactsButton,
+  footer,
   InformationBlock,
   MapClosedButton,
-  MenuBlock
+  MenuWrapper
 };

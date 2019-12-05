@@ -9,6 +9,7 @@ const InformationBlock = styled(Block)`
     flex-direction: row;
     justify-content: space-around;
     flex-grow: 2;
+    align-items: center;
   }
 `;
 
