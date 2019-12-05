@@ -1,2 +1,2 @@
-import DynamicSearch from "./DynamicSearch";
+import DynamicSearch from './DynamicSearch.jsx';
 export default DynamicSearch;

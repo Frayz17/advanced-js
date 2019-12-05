@@ -5,9 +5,6 @@ import { TypographyHeader } from 'components/Typography';
 import loadPosts from './loadPosts.js';
 import infinityLoad from './infinityLoad';
 import resetPosts from './resetPosts';
-import { getState } from 'Services/Store';
-
-const routesNumber = 4;
 
 export default connect((state) => {
   return {
@@ -17,15 +14,15 @@ export default connect((state) => {
   React.memo(({ postsLength }) => {
     // onMount
     React.useEffect(() => {
-      let { page } = getState().posts;
+      const localInfinityLoad = infinityLoad;
 
-      loadPosts(page);
-      window.addEventListener('scroll', infinityLoad(page, routesNumber));
+      loadPosts(1);
+      window.addEventListener('scroll', localInfinityLoad());
 
       // onUnmount
       return () => {
         resetPosts();
-        window.removeEventListener('scroll', infinityLoad(page, routesNumber));
+        window.removeEventListener('scroll', localInfinityLoad());
       };
     }, []);
 

@@ -1,3 +1,3 @@
-import ModalBox from './ModalBox';
+import ModalBox from './ModalBox.jsx';
 
 export default ModalBox;

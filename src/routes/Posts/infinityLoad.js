@@ -1,14 +1,15 @@
 import loadPosts from './loadPosts';
+import { getState } from 'Services/Store';
 
-export default (page, routesNumber) => () => {
-  // if scrolled to the bottom of the page
+export default () => () => {
+  const { page, isFetchSuccessful } = getState().posts;
+  // if scrolled to the bottom of the page and fetch data is enabled
   if (
     document.documentElement.offsetHeight > window.innerHeight &&
     window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
+      document.documentElement.offsetHeight &&
+    isFetchSuccessful
   ) {
-    if (page < routesNumber) {
-      loadPosts(++page);
-    }
+    loadPosts(page + 1);
   }
 };

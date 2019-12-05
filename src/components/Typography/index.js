@@ -1,5 +1,5 @@
-import Typography from './Typography';
-import TypographyHeader from './TypographyHeader';
+import Typography from './Typography.jsx';
+import TypographyHeader from './TypographyHeader.jsx';
 
 export default Typography;
 export { TypographyHeader };

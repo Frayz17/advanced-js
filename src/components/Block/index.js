@@ -1,5 +1,5 @@
-import Block from './Block';
-import BlockFlex from './BlockFlex';
+import Block from './Block.jsx';
+import BlockFlex from './BlockFlex.jsx';
 
 export default Block;
 
