@@ -2,7 +2,7 @@ export default (
   state = {
     data: [],
     page: 1,
-    isFetchSuccessful: true
+    fetchEnable: true
   },
   action
 ) => {
@@ -11,7 +11,7 @@ export default (
       return {
         data: [...action.payload.data],
         page: action.payload.page,
-        isFetchSuccessful: true
+        fetchEnable: true
       };
     case 'MERGE_POSTS_DATA':
       return {
@@ -23,17 +23,17 @@ export default (
       return {
         data: [],
         page: 1,
-        isFetchSuccessful: true
+        fetchEnable: true
       };
     case 'FETCH_POSTS_DATA_FAILED':
       return {
         ...state,
-        isFetchSuccessful: false
+        fetchEnable: false
       };
     case 'ENABLE_TO_FETCH_DATA_AFTER_FAIL':
       return {
         ...state,
-        isFetchSuccessful: true
+        fetchEnable: true
       };
     default:
       return { ...state };
