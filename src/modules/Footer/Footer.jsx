@@ -4,24 +4,25 @@ import Address from './Address';
 import Contacts from './Contacts';
 import Menu from 'modules/Menu';
 import Block from 'components/Block';
-import {
-  addressContactsWrapper,
-  footer,
-  InformationBlock,
-  MenuWrapper
-} from './styles';
+import { BlockFlex } from 'components/Block';
+import { footerStyle, FooterInfoWrapper, MenuWrapper } from './styles';
 
 export default React.memo(() => {
   return (
-    <Block style={footer}>
-      <InformationBlock>
+    <Block style={footerStyle}>
+      <FooterInfoWrapper>
         <Copyright />
 
-        <Block style={addressContactsWrapper}>
+        <BlockFlex
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="space-around"
+          style={{ marginBottom: '10px', textAlign: 'center' }}
+        >
           <Address />
           <Contacts />
-        </Block>
-      </InformationBlock>
+        </BlockFlex>
+      </FooterInfoWrapper>
 
       <MenuWrapper>
         <Menu

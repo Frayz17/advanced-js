@@ -1,4 +1,4 @@
-const footer = {
+const footerStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-around',
@@ -10,4 +10,4 @@ const footer = {
   backgroundColor: 'lightgrey'
 };
 
-export default footer;
+export default footerStyle;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Block from 'components/Block';
 
-const InformationBlock = styled(Block)`
+const FooterInfoWrapper = styled(Block)`
   display: flex;
   flex-direction: column-reverse;
 
@@ -13,4 +13,4 @@ const InformationBlock = styled(Block)`
   }
 `;
 
-export default InformationBlock;
+export default FooterInfoWrapper;

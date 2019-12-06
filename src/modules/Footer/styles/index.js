@@ -1,15 +1,6 @@
-import addressContactsWrapper from './addressContactsWrapper';
-import footer from './footer';
-import InformationBlock from './InformationBlock';
-import MapClosedButton from './MapClosedButton';
+import footerStyle from './footerStyle';
+import FooterInfoWrapper from './FooterInfoWrapper.jsx';
 import MenuWrapper from './MenuWrapper';
-import contactsButton from './contactsButton';
+import contactsButtonStyle from './contactsButtonStyle';
 
-export {
-  addressContactsWrapper,
-  contactsButton,
-  footer,
-  InformationBlock,
-  MapClosedButton,
-  MenuWrapper
-};
+export { contactsButtonStyle, footerStyle, FooterInfoWrapper, MenuWrapper };
