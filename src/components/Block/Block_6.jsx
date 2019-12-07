@@ -1,7 +1,6 @@
-import Block from './Block.jsx';
 import styled from 'styled-components';
+import Block from './Block.jsx';
 
 export default styled(Block)`
-	display: flex;
-	flex-wrap: wrap;
-`;
+	width: 50%;
+`
