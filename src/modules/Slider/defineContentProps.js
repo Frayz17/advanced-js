@@ -1,4 +1,3 @@
-
 export default function() {
 	const { children = [] } = this.props;
 	const slidesCount = children.length || 1;
@@ -6,4 +5,3 @@ export default function() {
 
 	return { slideWidth, slidesCount };
 };
-

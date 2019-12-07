@@ -5,6 +5,7 @@ import App from './App.jsx';
 import { 
 	newStore,
 	posts,
+	slides,
 	nav,
 	menu,
 	StoreProvider,
@@ -14,6 +15,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 newStore({
 	posts,
+	slides,
 	nav,
 	menu,
 });
