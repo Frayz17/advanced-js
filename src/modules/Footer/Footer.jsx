@@ -26,9 +26,7 @@ export default React.memo(() => {
 
       <MenuWrapper>
         <Menu
-          styleMenuBlock={{
-            position: 'relative'
-          }}
+          menuPosition='relative'
           styleLinksContainer={{
             display: 'flex',
             flexDirection: 'column'

@@ -8,15 +8,15 @@ import Footer from 'modules/Footer';
 
 export default React.memo(() => (
   <>
-    <Menu />
+    <Menu menuPosition='absolute' />
     <Switch>
-      <Route path="/posts">
+      <Route path='/posts'>
         <Posts />
       </Route>
-      <Route path="/sign-in">
+      <Route path='/sign-in'>
         <SignIn />
       </Route>
-      <Route path="/">
+      <Route path='/'>
         <Home />
       </Route>
     </Switch>
