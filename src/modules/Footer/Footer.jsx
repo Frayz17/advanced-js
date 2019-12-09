@@ -5,7 +5,12 @@ import Contacts from './Contacts';
 import Menu from 'modules/Menu';
 import Block from 'components/Block';
 import { BlockFlex } from 'components/Block';
-import { footerStyle, FooterInfoWrapper, MenuWrapper } from './styles';
+import {
+  footerStyle,
+  FooterInfoWrapper,
+  MenuWrapper,
+  addressContactsWrapper
+} from './styles';
 
 export default React.memo(() => {
   return (
@@ -13,12 +18,7 @@ export default React.memo(() => {
       <FooterInfoWrapper>
         <Copyright />
 
-        <BlockFlex
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="space-around"
-          style={{ marginBottom: '10px', textAlign: 'center' }}
-        >
+        <BlockFlex style={addressContactsWrapper}>
           <Address />
           <Contacts />
         </BlockFlex>
