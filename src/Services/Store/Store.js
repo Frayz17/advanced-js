@@ -9,7 +9,7 @@ let Store = null;
 
 export const newStore = (reducers = {}, middleware) => {
 	const combined = combineReducers(reducers);
-	const applied = applyMiddleware(thunk, !middleware ?
+	const applied = applyMiddleware(thunk, typeof middleware !== 'function' ?
 		(store) => (next) => (action) => next(action) :
 		middleware);
 	return (Store = createStore(combined, undefined, applied));

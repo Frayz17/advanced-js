@@ -1,4 +1,5 @@
 import React from 'react';
+import Block from 'components/Block';
 import Select, {
 	Option
 } from 'components/Select';
@@ -22,10 +23,10 @@ export default React.memo(() => (
 				collector = [];
 
 			while (i < 40) {
-				collector.push(<Option key={i}>
-					<Typography>
-						{i}
-					</Typography>
+				collector.push(<Option 
+					key={i} 
+					value={i}>
+					{i}
 				</Option>);
 				i++;
 			}
