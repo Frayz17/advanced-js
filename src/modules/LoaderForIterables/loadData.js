@@ -3,7 +3,7 @@ export default async (url = '', query = '', isEnable = true) => {
     try {
       const response = await fetch(url + query);
 
-      if (response.ok) {
+      if (response === 200) {
         const data = await response.json();
 
         return data;

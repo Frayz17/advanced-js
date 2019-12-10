@@ -8,8 +8,8 @@ export const url = 'http://127.0.0.1:4000/posts/';
 export const query = 1;
 
 export default React.memo(({ chlildren }) => {
-  const [data, setData] = useState([]);
-  const [isEnable, setIsEnable] = useState(true);
+  const [data, setData] = React.useState([]);
+  const [isEnable, setIsEnable] = React.useState(true);
 
   // onMount
   React.useEffect(() => {
@@ -33,7 +33,11 @@ export default React.memo(({ chlildren }) => {
           collector = [];
 
         while (i < data.length) {
-          collector.push(<Post key={i} index={i} />);
+          collector.push(
+            <Block key={i} index={i}>
+              {i}
+            </Block>
+          );
           i++;
         }
         return collector;
