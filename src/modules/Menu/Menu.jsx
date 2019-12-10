@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { MenuBlock, StyledBlockFlex, StyledButton } from './styled';
-import Icon from 'components/Icon';
+import { MenuBlock, StyledBlockFlex } from './styled';
 import MenuLinks from './MenuLinks';
-import onDisplayMenu from './onDisplayMenu';
+import MenuBurger from './MenuBurger';
 
 export default connect((state) => {
   return {
@@ -21,15 +20,12 @@ export default connect((state) => {
         <MenuBlock menuPosition={menuPosition}>
           <StyledBlockFlex
             style={styleLinksContainer}
-            displayMenuFlag={displayMenuFlag}>
+            displayMenuFlag={displayMenuFlag}
+          >
             <MenuLinks />
           </StyledBlockFlex>
 
-          {isBurgerNeed && (
-            <StyledButton onClick={onDisplayMenu}>
-              <Icon name={displayMenuFlag ? 'times' : 'bars'} />
-            </StyledButton>
-          )}
+          {isBurgerNeed && <MenuBurger displayMenuFlag={displayMenuFlag} />}
         </MenuBlock>
       );
     }

@@ -26,13 +26,10 @@ export default React.memo(() => {
 
       <MenuWrapper>
         <Menu
-          menuPosition='relative'
+          menuPosition="relative"
           styleLinksContainer={{
             display: 'flex',
             flexDirection: 'column'
-          }}
-          styleLinkItems={{
-            marginBottom: '10px'
           }}
           isBurgerNeed={false}
         />
