@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { BlockFlex } from 'components/Block';
 
-const StyledBlockFlex = styled(BlockFlex)`
+const MenuLinksWrapper = styled(BlockFlex)`
   align-items: center;
   justify-content: space-between;
 
@@ -16,4 +16,4 @@ const StyledBlockFlex = styled(BlockFlex)`
   }
 `;
 
-export default StyledBlockFlex;
+export default MenuLinksWrapper;

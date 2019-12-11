@@ -9,7 +9,8 @@ import {
   footerStyle,
   FooterInfoWrapper,
   MenuWrapper,
-  addressContactsWrapper
+  addressContactsWrapper,
+  menuStyle
 } from './styles';
 
 export default React.memo(() => {
@@ -25,14 +26,7 @@ export default React.memo(() => {
       </FooterInfoWrapper>
 
       <MenuWrapper>
-        <Menu
-          menuPosition="relative"
-          styleLinksContainer={{
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-          isBurgerNeed={false}
-        />
+        <Menu cssStr={menuStyle} isBurgerNeed={false} />
       </MenuWrapper>
     </Block>
   );

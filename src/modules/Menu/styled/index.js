@@ -1,5 +1,5 @@
 import MenuBlock from './MenuBlock';
-import StyledBlockFlex from './StyledBlockFlex';
+import MenuLinksWrapper from './MenuLinksWrapper';
 import StyledButton from './StyledButton';
 
-export { MenuBlock, StyledBlockFlex, StyledButton };
+export { MenuBlock, MenuLinksWrapper, StyledButton };

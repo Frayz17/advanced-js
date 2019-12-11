@@ -8,7 +8,7 @@ import Footer from 'modules/Footer';
 
 export default React.memo(() => (
   <>
-    <Menu menuPosition='absolute' />
+    <Menu cssStr={'position: absolute'} />
     <Switch>
       <Route path='/posts'>
         <Posts />
@@ -23,9 +23,3 @@ export default React.memo(() => (
     <Footer />
   </>
 ));
-
-// export default connect((state, props) => {
-//   return {
-//     // name: state.users.name
-//   };
-// })(App)

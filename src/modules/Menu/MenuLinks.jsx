@@ -22,6 +22,7 @@ export default React.memo(() => {
             key={i}
             to={path}
             disabled={isActiveFlag}
+            className='menu__links'
             style={isLinkActive(isActiveFlag)}>
             <Typography>{title}</Typography>
           </ButtonLink>
