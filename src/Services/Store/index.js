@@ -4,6 +4,17 @@ import posts from './posts';
 import nav from './nav';
 import menu from './menu';
 import map from './map';
+import loaderIterables from './loaderIterables';
 import StoreProvider from './StoreProvider';
 
-export { newStore, getStore, getState, posts, StoreProvider, nav, menu, map };
+export {
+  newStore,
+  getStore,
+  getState,
+  posts,
+  StoreProvider,
+  nav,
+  menu,
+  map,
+  loaderIterables
+};

@@ -2,11 +2,19 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
-import { posts, newStore, StoreProvider, nav, menu, map } from 'Services/Store';
+import {
+  posts,
+  newStore,
+  StoreProvider,
+  nav,
+  menu,
+  map,
+  loaderIterables
+} from 'Services/Store';
 import GlobalStyles from './globalStyles';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-newStore({ posts, nav, menu, map });
+newStore({ posts, nav, menu, map, loaderIterables });
 
 ReactDom.render(
   <StoreProvider>

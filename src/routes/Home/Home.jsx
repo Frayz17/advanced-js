@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import LoaderForIterables from 'modules/LoaderForIterables';
+import LoaderIterables from 'modules/LoaderIterables';
 // import { withRouter } from 'react-router-dom';
 
 export default connect((state, props) => {
@@ -8,11 +8,11 @@ export default connect((state, props) => {
     // x: state.test.x
   };
 })(
-  React.memo(({ history }) => {
+  React.memo(({ x }) => {
     return (
       <>
         <b>Home Page</b>
-        <LoaderForIterables />
+        <LoaderIterables />
       </>
     );
   })
