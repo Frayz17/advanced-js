@@ -1,45 +1,43 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { getStore } from 'Services/Store';
+import { connect, getState } from 'react-redux';
 import Block from 'components/Block';
 import { TypographyHeader } from 'components/Typography';
 import loadData from './loadData';
 import infinityLoad from './infinityLoad';
+import resetLoader from './resetLoader';
 
-export default connect((state, props) => {
+import DataFrame from './DataFrame';
+
+export default connect((state, props = {}) => {
   return {
-    url: state.loaderIterables.url,
-    query: state.loaderIterables.query,
-    isLoadEnable: state.loaderIterables.isLoadEnable
+    dataLength: (state.loaderIterables.data || []).length || 0
   };
 })(
-  React.memo(({ url, query, isLoadEnable }) => {
-    const [data, setData] = React.useState([]);
-
+  React.memo(({ dataLength, children, props = {} }) => {
     // onMount
-    React.useEffect(async () => {
-      const localInfinityLoad = infinityLoad;
+    React.useEffect(() => {
+      const localInfinityLoad = infinityLoad();
       const url = 'http://127.0.0.1:4000/posts/';
       const query = 1;
 
-      getStore().dispatch({
-        type: 'MERGE_DATA',
-        payload: {
-          url: 'http://127.0.0.1:4000/posts/',
-          query: 1,
-          data: [...state.data, payload.data]
-        }
-      });
-
-      setData(loadData(url, query));
-      window.addEventListener('scroll', localInfinityLoad());
+      loadData(url, query);
+      window.addEventListener('scroll', localInfinityLoad);
 
       // onUnmount
       return () => {
-        setData([]);
-        window.removeEventListener('scroll', localInfinityLoad());
+        resetLoader();
+        window.removeEventListener('scroll', localInfinityLoad);
       };
     }, []);
+
+    // console.log(
+    //   'children',
+    //   React.Children.map((child) => child)
+    // );
+
+    React.Children.map(children, (child) => {
+      console.log('hi from child', child);
+    });
 
     return (
       <Block>
@@ -48,12 +46,8 @@ export default connect((state, props) => {
           let i = 0,
             collector = [];
 
-          while (i < data.length) {
-            collector.push(
-              <Block key={i} index={i}>
-                {i}
-              </Block>
-            );
+          while (i < dataLength) {
+            collector.push(<DataFrame key={i} index={i} {...props} />);
             i++;
           }
           return collector;

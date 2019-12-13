@@ -1,12 +1,14 @@
 import loadData from './loadData';
-import { url, query } from './LoaderForIterables.jsx';
+import { getState } from 'Services/Store';
 
-export default (isEnable = true) => () => {
+export default () => () => {
+  const { url, query, isLoadEnable } = getState().loaderIterables;
+
   if (
     document.documentElement.offsetHeight > window.innerHeight &&
     window.innerHeight + document.documentElement.scrollTop ===
       document.documentElement.offsetHeight &&
-    isEnable
+    isLoadEnable
   ) {
     loadData(url, query + 1);
   }

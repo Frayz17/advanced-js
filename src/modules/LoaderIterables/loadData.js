@@ -1,17 +1,42 @@
-export default async (url = '', query = '', isEnable = true) => {
-  if (isEnable) {
+import { getStore, getState } from 'Services/Store';
+
+export default async (url = '', query = '') => {
+  const { isLoadEnable } = getState().loaderIterables;
+
+  if (isLoadEnable) {
     try {
       const response = await fetch(url + query);
 
-      if (response === 200) {
+      if (response.status === 200) {
         const data = await response.json();
+        // console.log('data', data);
+        // console.log('url', url);
+        // console.log('query', query);
 
-        return data;
+        getStore().dispatch({
+          type: 'MERGE_LOADER_ITERABLES_DATA',
+          payload: {
+            url,
+            query,
+            data
+          }
+        });
       } else {
-        console.log('failed to get data, response status: ', response.status);
+        console.log(
+          'error from status response, failed to get data, response status: ',
+          response.status
+        );
+
+        getStore().dispatch({
+          type: 'SET_LOADER_ITERABLES_LOAD_DISABLE'
+        });
       }
     } catch (e) {
-      console.log(e);
+      console.log('error from catch', e);
+
+      getStore().dispatch({
+        type: 'SET_LOADER_ITERABLES_LOAD_DISABLE'
+      });
     }
   }
 };
