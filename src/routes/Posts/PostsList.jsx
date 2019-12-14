@@ -13,15 +13,15 @@ export default connect((state) => {
   React.memo(({ postsLength }) => {
     // onMount
     React.useEffect(() => {
-      const localInfinityLoad = infinityLoad;
+      const localInfinityLoad = infinityLoad();
 
       loadPosts(1);
-      window.addEventListener('scroll', localInfinityLoad());
+      window.addEventListener('scroll', localInfinityLoad);
 
       // onUnmount
       return () => {
         resetPosts();
-        window.removeEventListener('scroll', localInfinityLoad());
+        window.removeEventListener('scroll', localInfinityLoad);
       };
     }, []);
 
