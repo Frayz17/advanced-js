@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Block from 'components/Block';
 import Select, {
 	Option
@@ -9,8 +10,13 @@ import Input, {
 import Button from 'components/Button';
 import Typography from 'components/Typography'
 import trySignIn from './trySignIn.js';
+import resetForm from './resetForm.js';
 
-export default React.memo(() => (
+export default connect((state) => ({
+	successFlag: (state.users || {}).authFlag,
+}))(React.memo(({
+	successFlag,
+}) => successFlag === undefined ?
 	<form method="POST" action="//localhost:4000/auth" onSubmit={trySignIn}>
 		<Block>
 			<Input 
@@ -46,8 +52,7 @@ export default React.memo(() => (
 		{(() => {
 			let i = 6,
 				collector = [];
-
-			while (i < 40) {
+				while (i < 40) {
 				collector.push(<Option 
 					key={i} 
 					value={i}>
@@ -63,6 +68,20 @@ export default React.memo(() => (
 				Send
 			</Typography>
 		</Button>
-		<img id="img" src="" />
-	</form>
+		<img id="img" src="" alt="avatar" />
+	</form> :
+	<Block>
+		{successFlag ? 
+			<Typography>
+				Successful signed in
+			</Typography> :
+			<Typography>
+				<Block>
+					Failure
+				</Block>
+				<Button onClick={resetForm}>
+					Send again
+				</Button>
+			</Typography>}
+	</Block>
 ));

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import Route from 'modules/Route';
 import Menu from 'modules/Menu';
 import Home from 'routes/Home';
 import Posts from 'routes/Posts';
@@ -9,13 +10,22 @@ export default React.memo(() => {
 	return <>
 		<Menu />
 		<Switch>
-			<Route path="/posts">
+			<Route 
+				title="Posts" 
+				description="!!description1" 
+				path="/posts">
 				<Posts />
 			</Route>
-			<Route path="/sign-in">
+			<Route 
+				title="Sign in" 
+				path="/sign-in"
+				description="!!description10000000">
 				<SignIn />
 			</Route>
-			<Route path="/">
+			<Route 
+				title="Home" 
+				path="/"
+				description=">>>>>>>>>>>>>>>>">
 				<Home />
 			</Route>
 		</Switch>

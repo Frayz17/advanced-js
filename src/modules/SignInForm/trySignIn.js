@@ -1,30 +1,35 @@
 import { getStore } from 'Services/Store';
 
+
+
 export default async (e) => {
 	e.preventDefault();
 
-	console.log('>>>>>>>>>>>>>>>>')
+	const collector = {};
+	const { 
+		action,
+		elements,
+		method,
+	} = e.target;
+	[ ...elements ].forEach((item) => {
+		if ((item.nodeName === 'BUTTON' || item.nodeName === 'SELECT') &&
+			item.name) {
+			collector[item.name] = item.value || '';
+		}
+	});
+	const path = action + ((Math.floor(Math.random() * (1 - 0 + 1)) + 0) || '0');
+	const r = await fetch(path, {
+		method,
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(collector),
+	});
 
-	// const { 
-	// 	action,
-	// 	elements,
-	// 	method,
-	// } = e.target;
-	// const clearBody = [ ...elements ].filter((item) => (
-	// 	item.nodeName === 'BUTTON' || item.nodeName === 'SELECT'
-	// ));
-	// const r = await fetch(action, {
-	// 	method,
-	// 	headers: {
-	// 		'Accept': 'application/json',
-	// 		'Content-Type': 'application/json'
-	// 	},
-	// 	body: JSON.stringify(clearBody),
-	// });
-
-	// getStore().dispatch({
-	// 	type: r.status === 200 ?
-	// 		'SIGN_IN_SUCCESS' :
-	// 		'SIGN_IN_FAILURE'
-	// });
+	getStore().dispatch({
+		type: r.status === 200 ?
+			'SIGN_IN_SUCCESS' :
+			'SIGN_IN_FAILURE'
+	});
 };

@@ -7,6 +7,7 @@ import {
 	posts,
 	nav,
 	menu,
+	users,
 	StoreProvider,
 } from 'Services/Store';
 import GlobalStyles from './globalStyles.js';
@@ -16,6 +17,7 @@ newStore({
 	posts,
 	nav,
 	menu,
+	users,
 });
 
 ReactDOM.render(<StoreProvider>
