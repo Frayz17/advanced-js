@@ -1,4 +1,4 @@
-import {getStore} from "../../Services/Store";
+import {getStore} from '../../Services/Store';
 
 export default async (page  = 1) => {
 	const response = await fetch('http://127.0.0.1:4000/main_slider');
