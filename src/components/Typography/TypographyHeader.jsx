@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Typography from './Typography.jsx';
+import Typography from './Typography';
 
 export default styled(Typography)`
-	font-size: 24px;
+  font-size: 24px;
 `;

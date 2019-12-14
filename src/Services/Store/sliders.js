@@ -1,39 +1,29 @@
-import { handleChangeSlide } from 'modules/Slider';
+import { handleChangeSlideX } from 'modules/Slider/funcs';
 
-export default (state = {
-	main: {
-		scrollX: 0,
-		currentSlide: 0,
-		slides: [{
-			title: 'First',
-			style: {
-				backgroundColor: 'red'
-			}
-		}, {
-			title: '1',
-			style: {
-				backgroundColor: 'blue'
-			}
-		}, {
-			title: 'yellow',
-			style: {
-				backgroundColor: 'yellow'
-			}
-		}],
-	},
-	// welcome: {
-	// },
-}, { type = '', payload = {} }) => {
-	const { sliderName = '', slideIndex = 0 } = payload;
-
-	switch (type) {
-		case 'SLIDE_X':
-			state[sliderName] = { 
-				...handleChangeSlide({ ...state[sliderName] }, slideIndex), 
-			};
-			return { ...state };
-
-		default:
-			return { ...state };
-	}
+export default (
+  state = {
+    main: {
+      slides: [
+        [{ title: 'first' }, { title: 'second' }],
+        [{ title: 'third' }, { title: 'fourth' }]
+      ],
+      currentRow: 0,
+      currentSlide: 0,
+      scrollX: 0,
+      scrollY: 0,
+      isAnimatedX: true
+    }
+  },
+  { type = '', payload = {} }
+) => {
+  const { sliderName = '', slideIndex = 0 } = payload;
+  switch (type) {
+    case 'SLIDE_TO_X':
+      state[sliderName] = {
+        ...handleChangeSlideX({ ...state[sliderName] }, slideIndex)
+      };
+      return { ...state };
+    default:
+      return { ...state };
+  }
 };

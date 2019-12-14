@@ -1,4 +1,3 @@
-
-export default (state = {}, action) => {
-	return { ...state };
+export default (state = { photos: 'photos' }, action) => {
+  return { ...state };
 };

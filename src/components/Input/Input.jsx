@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export default styled.input`
-	border: 1px solid red;
-	padding: 8px 14px;
+  padding: 14px 8px;
+  border: 1px solid red;
+  outline: none;
 `;
