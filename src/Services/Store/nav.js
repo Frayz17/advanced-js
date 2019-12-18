@@ -2,13 +2,13 @@
 export default (state = {
 	links: [{
 		path: '/',
-		title: 'Main',
+		title: 'main_page',
 	}, {
 		path: '/posts',
-		title: 'Posts',
+		title: 'post_page',
 	}, {
 		path: '/sign-in',
-		title: 'SignIn',
+		title: 'form_page',
 	}],
 }, action) => {
 	return { ...state };

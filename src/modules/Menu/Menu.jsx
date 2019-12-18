@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getState } from 'Services/Store'
+import { withLang } from 'Services/Lang';
+import { getState } from 'Services/Store';
 import Block, { 
 	BlockFlex 
 } from 'components/Block';
@@ -38,13 +39,14 @@ const StyledButton = styled(Button)`
 	}
 `;
 
-export default withRouter(connect((state) => {
+export default withRouter(withLang(connect((state) => {
 	return {
 		displayMenuFlag: (state.menu || {}).displayMenuFlag || false,
 	};
 })(React.memo(({
 	history,
 	displayMenuFlag,
+	getLang = () => {},
 }) => {
 	const { nav: { links = [] } } = getState();
 
@@ -60,7 +62,7 @@ export default withRouter(connect((state) => {
 		<StyledBlockFlex displayMenuFlag={displayMenuFlag}>
 			{links.map(({ 
 				path = '/',
-				title = 'No name', 
+				title,
 			}, i) => {
 				const isActiveFlag = history.location.pathname === path;
 
@@ -74,7 +76,7 @@ export default withRouter(connect((state) => {
 						color: 'green'
 					}}>
 					<Typography>
-						{title}
+						{getLang(title || '')}
 					</Typography>
 				</ButtonLink>
 			})}
@@ -83,4 +85,4 @@ export default withRouter(connect((state) => {
 			<Icon name={displayMenuFlag ? 'times' : 'bars'} />
 		</StyledButton>
 	</Block>
-})));
+}))));

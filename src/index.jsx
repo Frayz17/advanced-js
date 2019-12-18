@@ -8,6 +8,7 @@ import {
 	nav,
 	menu,
 	users,
+	langs,
 	StoreProvider,
 } from 'Services/Store';
 import GlobalStyles from './globalStyles.js';
@@ -18,6 +19,7 @@ newStore({
 	nav,
 	menu,
 	users,
+	langs,
 });
 
 ReactDOM.render(<StoreProvider>

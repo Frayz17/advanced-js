@@ -4,7 +4,7 @@ import Route from 'modules/Route';
 import Menu from 'modules/Menu';
 import Home from 'routes/Home';
 import Posts from 'routes/Posts';
-import SignIn from 'routes/SignIn';
+// import SignIn from 'routes/SignIn';
 
 export default React.memo(() => {
 	return <>
@@ -16,12 +16,12 @@ export default React.memo(() => {
 				path="/posts">
 				<Posts />
 			</Route>
-			<Route 
+			{/*<Route 
 				title="Sign in" 
 				path="/sign-in"
 				description="!!description10000000">
 				<SignIn />
-			</Route>
+			</Route>*/}
 			<Route 
 				title="Home" 
 				path="/"
