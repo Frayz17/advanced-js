@@ -11,6 +11,26 @@ import Image from 'components/Image';
 import Icon from 'components/Icon';
 import Comments from 'modules/Comments';
 
+const CommentItem = connect((state, { postIndex = 0, commentIndex = 0 }) => ({
+	...((((state.posts || [])[postIndex] || {}).comments || [])[commentIndex] || {})
+}))(React.memo(({ commentIndex, name, text, created_at, id }) => {
+	return <Block>
+		<Block>
+			<TypographyTitle>
+				#{id} {name} - {created_at}
+			</TypographyTitle>
+		</Block>
+		<Block>
+			<Typography>
+				{text}
+			</Typography>
+		</Block>
+	</Block>
+}));
+CommentItem.defaultProps = {
+	commentIndex: null,
+};
+
 export default connect((state, { index = 0 }) => {
 	const {
 		comments,
@@ -19,6 +39,7 @@ export default connect((state, { index = 0 }) => {
 
 	return rest;
 })(React.memo(({
+	index,
 	title,
 	img = `https://picsum.photos/id/985/400/400.jpg`,
 	text = '',
@@ -27,7 +48,7 @@ export default connect((state, { index = 0 }) => {
 	created_at = ''
 }) => {
 	return title ? 
-		<BlockFlex style={{}}>
+		<BlockFlex>
 			<Block6md12 style={{padding: '2em', border: '0.2px solid rgba(0,0,0,0.1)'}}>
 				<BlockAlignCenter>
 					<TypographyTitle>
@@ -53,7 +74,9 @@ export default connect((state, { index = 0 }) => {
 				</Block>
 			</Block6md12>
 			<Block6md12 style={{padding: '2em'}}>
-				<Comments />
+				<Comments postIndex={index}>
+					<CommentItem />
+				</Comments>
 			</Block6md12>
 		</BlockFlex> :
 		<React.Fragment />;
