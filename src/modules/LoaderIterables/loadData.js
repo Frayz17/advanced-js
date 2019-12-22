@@ -9,9 +9,6 @@ export default async (url = '', query = '') => {
 
       if (response.status === 200) {
         const data = await response.json();
-        // console.log('data', data);
-        // console.log('url', url);
-        // console.log('query', query);
 
         getStore().dispatch({
           type: 'MERGE_LOADER_ITERABLES_DATA',

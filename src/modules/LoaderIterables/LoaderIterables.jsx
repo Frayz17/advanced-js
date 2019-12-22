@@ -6,14 +6,13 @@ import loadData from './loadData';
 import infinityLoad from './infinityLoad';
 import resetLoader from './resetLoader';
 
-import DataFrame from './DataFrame';
-
-export default connect((state, props = {}) => {
+export default connect((state, { stateName } = {}) => {
   return {
-    dataLength: (state.loaderIterables.data || []).length || 0
+    dataLength: (state.loaderIterables.data || []).length || 0,
+    stateName
   };
 })(
-  React.memo(({ dataLength, children, props = {} }) => {
+  React.memo(({ dataLength, children, stateName }) => {
     // onMount
     React.useEffect(() => {
       const localInfinityLoad = infinityLoad();
@@ -30,28 +29,32 @@ export default connect((state, props = {}) => {
       };
     }, []);
 
-    // console.log(
-    //   'children',
-    //   React.Children.map((child) => child)
-    // );
-
-    React.Children.map(children, (child) => {
-      console.log('hi from child', child);
-    });
-
     return (
       <Block>
         <TypographyHeader>Loader</TypographyHeader>
-        {(() => {
-          let i = 0,
-            collector = [];
+        {dataLength === 0
+          ? ''
+          : (() => {
+              let i = 0,
+                collector = [];
 
-          while (i < dataLength) {
-            collector.push(<DataFrame key={i} index={i} {...props} />);
-            i++;
-          }
-          return collector;
-        })()}
+              while (i < dataLength) {
+                const index = i;
+                const item = { ...children };
+
+                console.log('index', index);
+
+                item.props = {
+                  ...children.props,
+                  index
+                };
+                collector.push(
+                  <React.Fragment key={index}>{item}</React.Fragment>
+                );
+                i++;
+              }
+              return collector;
+            })()}
       </Block>
     );
   })

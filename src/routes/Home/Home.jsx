@@ -19,6 +19,8 @@ import Post from 'modules/Post';
 // console.log('STRING:', typeof JSON.stringify(obj));
 // console.log('OBJECT:', JSON.parse(str));
 
+const STATE_LOADER_DATA_NAME = 'loaderIterables';
+
 export default connect((state, props) => {
   return {
     // x: state.test.x
@@ -29,8 +31,7 @@ export default connect((state, props) => {
       <>
         <b>Home Page</b>
         <LoaderIterables>
-          <Post />
-          <Post />
+          <Post stateName={STATE_LOADER_DATA_NAME} />
         </LoaderIterables>
       </>
     );
