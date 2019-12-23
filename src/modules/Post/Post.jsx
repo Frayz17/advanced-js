@@ -4,7 +4,7 @@ import Block from 'components/Block';
 import Typography from 'components/Typography';
 import Image from 'components/Image';
 
-export default connect((state, { stateName, index = 0 }) => {
+export default connect((state, { stateName = 'posts', index = 0 }) => {
   const { comments, ...rest } = (state[stateName].data || [])[index];
 
   return rest;

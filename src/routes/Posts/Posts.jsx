@@ -1,45 +1,22 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Post from 'modules/Post';
+import LoaderIterables from 'modules/LoaderIterables';
 import { TypographyHeader } from 'components/Typography';
-import loadPosts from './loadPosts.js';
-import infinityLoad from './infinityLoad';
-import resetPosts from './resetPosts';
 
-export default connect((state) => {
-  return {
-    postsLength: (state.posts.data || []).length || 0
-  };
-})(
-  React.memo(({ postsLength }) => {
-    // onMount
-    React.useEffect(() => {
-      const localInfinityLoad = infinityLoad();
+const STATE_LOADER_DATA_NAME = 'loaderIterablesPosts';
 
-      loadPosts(1);
-      window.addEventListener('scroll', localInfinityLoad);
-
-      // onUnmount
-      return () => {
-        resetPosts();
-        window.removeEventListener('scroll', localInfinityLoad);
-      };
-    }, []);
-
-    return (
-      <>
-        <TypographyHeader>Posts page</TypographyHeader>
-        {(() => {
-          let i = 0,
-            collector = [];
-
-          while (i < postsLength) {
-            collector.push(<Post key={i} index={i} />);
-            i++;
-          }
-          return collector;
-        })()}
-      </>
-    );
-  })
-);
+export default React.memo(() => {
+  return (
+    <>
+      <TypographyHeader>Posts page</TypographyHeader>
+      <LoaderIterables
+        stateName={STATE_LOADER_DATA_NAME}
+        url="http://127.0.0.1:4000"
+        query="/posts/"
+        urlId={1}
+      >
+        <Post />
+      </LoaderIterables>
+    </>
+  );
+});

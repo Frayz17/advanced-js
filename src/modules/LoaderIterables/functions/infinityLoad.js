@@ -1,8 +1,8 @@
 import loadData from './loadData';
 import { getState } from 'Services/Store';
 
-export default () => () => {
-  const { url, query, isLoadEnable } = getState().loaderIterables;
+export default (stateName) => () => {
+  const { url, query, urlId, isLoadEnable } = getState()[stateName];
 
   if (
     document.documentElement.offsetHeight > window.innerHeight &&
@@ -10,6 +10,6 @@ export default () => () => {
       document.documentElement.offsetHeight &&
     isLoadEnable
   ) {
-    loadData(url, query + 1);
+    loadData(stateName, url, query, urlId + 1);
   }
 };

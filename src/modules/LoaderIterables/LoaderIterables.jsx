@@ -1,61 +1,35 @@
 import React from 'react';
-import { connect, getState } from 'react-redux';
+import { loadData, infinityLoad, resetLoader } from './functions';
+import LoadedItems from './LoadedItems';
 import Block from 'components/Block';
 import { TypographyHeader } from 'components/Typography';
-import loadData from './loadData';
-import infinityLoad from './infinityLoad';
-import resetLoader from './resetLoader';
 
-export default connect((state, { stateName } = {}) => {
-  return {
-    dataLength: (state.loaderIterables.data || []).length || 0,
-    stateName
-  };
-})(
-  React.memo(({ dataLength, children, stateName }) => {
+export default React.memo(
+  ({ dataLength, children, stateName, url, query, urlId }) => {
     // onMount
     React.useEffect(() => {
-      const localInfinityLoad = infinityLoad();
-      const url = 'http://127.0.0.1:4000/posts/';
-      const query = 1;
+      const localInfinityLoad = infinityLoad(stateName);
 
-      loadData(url, query);
+      loadData(stateName, url, query, urlId);
+
       window.addEventListener('scroll', localInfinityLoad);
 
       // onUnmount
       return () => {
-        resetLoader();
+        resetLoader(stateName);
         window.removeEventListener('scroll', localInfinityLoad);
       };
-    }, []);
+    }, [stateName, url, query, urlId]);
 
     return (
       <Block>
         <TypographyHeader>Loader</TypographyHeader>
-        {dataLength === 0
-          ? ''
-          : (() => {
-              let i = 0,
-                collector = [];
-
-              while (i < dataLength) {
-                const index = i;
-                const item = { ...children };
-
-                console.log('index', index);
-
-                item.props = {
-                  ...children.props,
-                  index
-                };
-                collector.push(
-                  <React.Fragment key={index}>{item}</React.Fragment>
-                );
-                i++;
-              }
-              return collector;
-            })()}
+        <LoadedItems
+          stateName={stateName}
+          dataLength={dataLength}
+          childrenEntity={children}
+        />
       </Block>
     );
-  })
+  }
 );

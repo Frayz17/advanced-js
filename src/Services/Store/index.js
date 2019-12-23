@@ -4,7 +4,8 @@ import posts from './posts';
 import nav from './nav';
 import menu from './menu';
 import map from './map';
-import loaderIterables from './loaderIterables';
+import loaderIterablesUserRecord from './loaderIterablesUserRecord';
+import loaderIterablesPosts from './loaderIterablesPosts';
 import StoreProvider from './StoreProvider';
 
 export {
@@ -16,5 +17,6 @@ export {
   nav,
   menu,
   map,
-  loaderIterables
+  loaderIterablesPosts,
+  loaderIterablesUserRecord
 };

@@ -9,12 +9,20 @@ import {
   nav,
   menu,
   map,
-  loaderIterables
+  loaderIterablesPosts,
+  loaderIterablesUserRecord
 } from 'Services/Store';
 import GlobalStyles from './globalStyles';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-newStore({ posts, nav, menu, map, loaderIterables });
+newStore({
+  posts,
+  nav,
+  menu,
+  map,
+  loaderIterablesPosts,
+  loaderIterablesUserRecord
+});
 
 ReactDom.render(
   <StoreProvider>

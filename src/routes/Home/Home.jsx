@@ -1,39 +1,31 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import LoaderIterables from 'modules/LoaderIterables';
-// import { withRouter } from 'react-router-dom';
-
 import Post from 'modules/Post';
+import UserRecord from 'modules/UserRecord';
+import { TypographyHeader } from 'components/Typography';
 
-// const obj = {
-//   title: 'title',
-//   img: 'https://picsum.photos/id/985/400/400.jpg',
-//   text: '',
-//   likes: 0,
-//   dislikes: 0,
-//   created_at: ''
-// };
+export default React.memo(() => {
+  return (
+    <>
+      <TypographyHeader>Home Page</TypographyHeader>
 
-// const str = JSON.stringify(obj);
+      {/* <LoaderIterables
+        stateName={'loaderIterablesPosts'}
+        url="http://127.0.0.1:4000"
+        query="/posts/"
+        urlId={1}
+      >
+        <Post stateName={'loaderIterablesPosts'} />
+      </LoaderIterables> */}
 
-// console.log('STRING:', typeof JSON.stringify(obj));
-// console.log('OBJECT:', JSON.parse(str));
-
-const STATE_LOADER_DATA_NAME = 'loaderIterables';
-
-export default connect((state, props) => {
-  return {
-    // x: state.test.x
-  };
-})(
-  React.memo(({ x }) => {
-    return (
-      <>
-        <b>Home Page</b>
-        <LoaderIterables>
-          <Post stateName={STATE_LOADER_DATA_NAME} />
-        </LoaderIterables>
-      </>
-    );
-  })
-);
+      <LoaderIterables
+        stateName={'loaderIterablesUserRecord'}
+        url="http://127.0.0.1:4000"
+        query="/records/"
+        urlId={1}
+      >
+        <UserRecord />
+      </LoaderIterables>
+    </>
+  );
+});
