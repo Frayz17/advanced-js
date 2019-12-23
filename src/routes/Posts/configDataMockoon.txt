@@ -21,3 +21,17 @@
 }
 {{/ repeat}}
 ]
+
+
+records/1
+
+[
+{{#repeat 2}}
+{
+ "id": {{ @index }},
+ "name": "{{ firstName }} {{ lastName }}",
+ "text": "{{lorem 20}}",
+ "created_at": "{{now 'YYYY-MM-DD'}}"
+}
+{{/ repeat}}
+]
