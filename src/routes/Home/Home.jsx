@@ -1,11 +1,8 @@
-import Slider from 'modules/Slider';
+import MainSlider from './Slider.jsx';
 import React from 'react';
-import { connect } from 'react-redux';
 
-export default connect((state, props) => {
-	return {};
-})(React.memo(() => {
+export default React.memo(() => {
 	return <>
 		<b>Home page</b>
-		<Slider />
-	</>}));
+		<MainSlider />
+	</>});

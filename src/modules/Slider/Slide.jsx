@@ -50,11 +50,11 @@ export default connect((state, { index = 0 }) => {
 		...(state.slides || [])[index]
 	};
 })(React.memo(({
-    title = '',
-	img = 'https://picsum.photos/id/985/400/400.jpg',
-	text = '',
-	index
-}) => {
+				   title = '',
+				   img = 'https://picsum.photos/id/985/400/400.jpg',
+				   text = '',
+				   index
+			   }) => {
 	return	img ?
 		<Slide>
 			<h3>{title}</h3>
