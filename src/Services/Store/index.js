@@ -1,21 +1,10 @@
-import {
-	newStore,
-	getStore,
-	getState,
-} from './Store.js';
-import posts from './posts.js';
-import slides from './slides.js';
-import StoreProvider from './StoreProvider.jsx';
-import menu from './menu.js';
-import nav from './nav.js';
+import { newStore, getStore, getState } from './Store.js';
 
-export {
-	newStore,
-	getStore,
-	getState,
-	posts,
-	slides,
-	nav,
-	StoreProvider,
-	menu,
-};
+import posts from './posts';
+import nav from './nav';
+import menu from './menu';
+import homeTest from './homeTest.js';
+import StoreProvider from './StoreProvider';
+import slides from './slides.js';
+
+export { newStore, getStore, getState, posts, StoreProvider, nav, menu, homeTest, slides };

@@ -1,5 +1,5 @@
 import React from 'react';
-import MainSlider from 'modules/Slider';
+import Slider from 'modules/Slider';
 
 
 const settings = {
@@ -27,7 +27,6 @@ const settings = {
 
 export default React.memo(() => {
 	return <>
-		<MainSlider jsonAdress={'http://127.0.0.1:4000/main_slider'} {...settings} page={1}>
-		</MainSlider>
+		<Slider jsonAdress={'http://127.0.0.1:4000/main_slider'} {...settings} page={1} />
 	</>
 });
